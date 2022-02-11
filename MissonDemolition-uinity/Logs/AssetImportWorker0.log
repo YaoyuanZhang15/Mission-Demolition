@@ -414,3 +414,11 @@ Received Import Request.
 Start importing Assets/prefab/Projectile.prefab using Guid(ecc032cb0e7357e4c8550234f47142a5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9613f9c9b5ba3944978351e4c8f650a8') in 0.009526 seconds 
   Import took 0.012930 seconds .
 
+========================================================================
+Received Import Request.
+  Time since last request: 1844.752350 seconds.
+  path: Assets/Slingershot.cs
+  artifactKey: Guid(1ccf6c3be46cfa24395cf6f291a84dd8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Slingershot.cs using Guid(1ccf6c3be46cfa24395cf6f291a84dd8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '012c40bbd8edc23bb59ea565be17c2ab') in 0.011414 seconds 
+  Import took 0.028637 seconds .
+
