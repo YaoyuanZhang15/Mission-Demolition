@@ -41,18 +41,20 @@ public class Clouds : MonoBehaviour
             offset.x *= sphereOffsetScale.x;
             offset.y *= sphereOffsetScale.y;
             offset.z *= sphereOffsetScale.z;
-            spTrans.LocalPosition = offset;
+            spTrans.localPosition = offset;
 
 
             Vector3 scale = Vector3.one;
             scale.x = Random.Range(sphereScaleRangeX.x, sphereScaleRangeX.y);
             scale.y = Random.Range(sphereScaleRangeY.x, sphereScaleRangeY.y);
             scale.z = Random.Range(sphereScaleRangeZ.x, sphereScaleRangeZ.y);
+
+            scale.y *= 1 - (Mathf.Abs(offset.x) / sphereOffsetScale.x);
+            scale.y = Mathf.Max(scale.y, scaleYmin);
+             spTrans.localScale = scale;
         }
 
-        scale.y *= 1 - (Mathf.Abs(offset.x) / sphereOffsetScale.x);
-        scaleYmin.y = Mathf.Max(scaleYmin.y, scaleYmin);
-        spTrans.LocalScale = scaleYmin;
+        
 
     }
 
@@ -71,7 +73,7 @@ public class Clouds : MonoBehaviour
 
             foreach(GameObject sp in spheres)
             {
-                Destroy(sp)
+                Destroy(sp);
             }
 
             Start();

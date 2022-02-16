@@ -4,18 +4,35 @@ using UnityEngine;
 
 public class Slingershot : MonoBehaviour
 {
+    static private Slingershot S;
+
+
     [Header("Set in Inspectpr")]
     public GameObject prefabprojectile;
 
     public GameObject launchPoint;
-    public float velocityMutipler = 8f;
+    public float velocityMultipler = 8f;
     public Vector3 launchPos;
     public GameObject projectile;
     public bool aimingMode;
     public Rigidbody projectileRB;
 
+
+    static public Vector3 launch_Pos
+    {
+        get
+        {
+            if (S == null) return Vector3.zero;
+            return S.launchPos;
+        }
+
+
+
+    }
     private void Awake()
     {
+        S = this;
+
         Transform launchPointTrans = transform.Find("LaunchPoint");
         launchPoint = launchPointTrans.gameObject;
 
@@ -55,7 +72,7 @@ public class Slingershot : MonoBehaviour
             aimingMode = false;
             projectileRB.isKinematic = false;
             projectileRB.velocity = -mouseDelta * velocityMultipler;
-            FollowCam.POI = projectile;
+            Follow.POI = projectile;
             projectile = null;
         }
     }
@@ -76,7 +93,7 @@ public class Slingershot : MonoBehaviour
     private void OnMouseDown()
     {
         aimingMode = true;
-        projectile = Instantiate(prefabProjectile) as GameObject;
+        projectile = Instantiate(prefabprojectile) as GameObject;
         projectile.transform.position = launchPos;
         projectileRB = projectile.GetComponent<Rigidbody>();
         projectileRB.isKinematic = true;

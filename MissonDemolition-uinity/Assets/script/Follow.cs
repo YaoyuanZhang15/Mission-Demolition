@@ -21,22 +21,41 @@ public class Follow : MonoBehaviour
     private void FixedUpdate()
     {
 
-        if (POI == null) return;
-    }
 
-        Vector3 destination = POI.transform.position;
 
-        destination.x = Mathf.FloatToHalf().Max(minXY.x, destination.x);
-        destination.y = Mathf.FloatToHalf().Max(minXY.x, destination.y);
 
-        destination = Vector3.lerp(Transform.position, destination, easing);
-        destination.z = camZ;
+        Vector3 destination;
+        if(POI == null)
+        {
+            destination = Vector3.zero;
+        }
+        else
+        {
+            destination = POI.transform.position;
+            if(POI.tag == "Projectile")
+            {
+                if (POI.GetComponent<Rigidbody>().IsSleeping())
+                {
+                    POI = null;
+                }
+            }
+
+        }
+
+
+
+
+        destination.x = Mathf.Max(minXY.x, destination.x);
+        destination.y = Mathf.Max(minXY.x, destination.y);
+
+        destination = Vector3.Lerp(transform.position, destination, easing);
+        destination.z = camz;
         transform.position = destination;
 
 
-        Camera.main.orthographicSize = destination.y +10;
+        Camera.main.orthographicSize = destination.y + 10;
 
-
+    }
 
     // Start is called before the first frame update
     void Start()
